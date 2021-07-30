@@ -1,16 +1,25 @@
-const totalFruit = array => {
-  let map = new Map(), max = -1
-  for(let start = 0, end = 0; end < array.length; end++){
-      let currElement = array[end]
-      map.set(currElement, map.get(currElement)+1 || 1 )
-      while(map.size > 2){
-          let char = array[start]
-          let charCount = map.get(char)
-          if(charCount-1 === 0)map.delete(char)
-          else map.set(char, charCount-1)
-          start++
+/** 904
+ * @param {number[]} fruits
+ * @return {number}
+ */
+ var totalFruit = function(fruits) {
+  let left = 0, right = 0;
+  let max = 0;
+  const map = new Map();
+  while (right < fruits.length) {
+      let curRight = fruits[right];
+      let curLeft = fruits[left];
+      map.set(curRight, map.get(curRight) + 1 || 1);
+      while (map.size > 2) {
+          if (map.get(curLeft) === 1) {
+              map.delete(curLeft);
+          } else {
+              map.set(curLeft, map.get(curLeft) - 1);
+          }
+          left ++;
       }
-      if(map.size >= 1)max = Math.max(max, end + 1 - start)
+      max = Math.max(max, right - left + 1);
+      right ++;
   }
-  return max
+  return max;
 };
