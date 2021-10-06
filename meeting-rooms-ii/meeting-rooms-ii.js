@@ -4,14 +4,14 @@
  */
 var minMeetingRooms = function(intervals) {
     let rooms = 0, end = 0;
-    const starts = intervals.map(a => a[0]).sort((a, b) => a - b);
-    const ends = intervals.map(a => a[1]).sort((a, b) => a - b);
-    for (let i = 0; i < intervals.length; i++) {
-        if (starts[i] < ends[end]) {
-            rooms ++;
-        } else {
-            end ++;
-        }
-    }
-    return rooms;
+    let starts = intervals.concat().sort((a, b) => a[0] - b[0]);
+    let ends = intervals.sort((a, b) => a[1] - b[1]);
+    for (var i = 0; i < intervals.length; i++) {
+		if (starts[i][0] < ends[end][1]) {
+			rooms++;
+		} else {
+			end++;
+		}
+	}
+	return rooms;
 };
