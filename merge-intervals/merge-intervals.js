@@ -3,15 +3,15 @@
  * @return {number[][]}
  */
 var merge = function(intervals) {
-    intervals = intervals.sort((a, b) => a[0] === b[0] ? a[1] - b[1] : a[0] - b[0]);
+    intervals = intervals.sort((a, b) => a[0] - b[0]);
     let prev = intervals[0];
-    let res = [prev];
-    for (const arr of intervals) {
-        if (arr[0] > prev[1]) {
-            res.push(arr);
-            prev = arr;
+    const res = [prev];
+    for (let [start, end] of intervals) {
+        if (start <= prev[1]) {
+            prev[1] = Math.max(end, prev[1]);
         } else {
-            prev[1] = Math.max(prev[1], arr[1]);
+            prev = [start, end];
+            res.push(prev);
         }
     }
     return res;
