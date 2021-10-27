@@ -5,18 +5,18 @@
 var findCircleNum = function(isConnected) {
     let count = 0;
     const map = {};
-    const dfs = (arr) => {
-        for (let j = 0; j < arr.length; j++) {
-            if (arr[j] === 1 && !map[j]) {
-                map[j] = true;
-                dfs(isConnected[j]);
+    const dfs = (con) => {
+        for (let i = 0; i < con.length; i++) {
+            if (con[i] === 1 && !map[i]) {
+                map[i] = true;
+                dfs(isConnected[i])
             }
         }
     }
     for (let i = 0; i < isConnected.length; i++) {
         if (!map[i]) {
-            dfs(isConnected[i]);
             count++;
+            dfs(isConnected[i]);
         }
     }
     return count;
