@@ -12,13 +12,5 @@
  */
 var preorderTraversal = function(root) {
     if (!root) return [];
-    const queue = [root];
-    const res = []
-    while (queue.length) {
-        let curr = queue.shift();
-        res.push(curr.val);
-        if (curr.right) queue.unshift(curr.right);
-        if (curr.left) queue.unshift(curr.left);
-    }
-    return res;
+    return [root.val,...preorderTraversal(root.left), ...preorderTraversal(root.right)]
 };
