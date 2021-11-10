@@ -3,7 +3,7 @@
  * @return {number}
  */
 var connectSticks = function(sticks) {
-    if (sticks.length < 2) return 0;
+   if (sticks.length < 2) return 0;
     let res = 0;
     let combined = [];
     sticks = sticks.sort((a, b) => a - b);
